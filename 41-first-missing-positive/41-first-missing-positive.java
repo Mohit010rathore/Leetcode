@@ -4,10 +4,12 @@ class Solution {
         
         for (int i = 0; i < n; i++) {
     		while (nums[i] != i + 1) {
+                
+                int correct_pos = nums[i] - 1;
     			if (nums[i] <= 0 || nums[i] >= n)
     				break;
  
-                	if(nums[i]==nums[nums[i]-1])
+                	if(nums[i]==nums[correct_pos])
                     		break;
  
     			int temp = nums[i];
