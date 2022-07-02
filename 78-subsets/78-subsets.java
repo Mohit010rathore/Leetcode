@@ -17,7 +17,7 @@ class Solution {
         printSub(index+1, temp, nums, ans);
         
         // Not Pick element at index
-        System.out.println(index);
+        // System.out.println(index);
         temp.remove(temp.size()-1); // Backtrack
         printSub(index+1, temp, nums, ans);
     }
