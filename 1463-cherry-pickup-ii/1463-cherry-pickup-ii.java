@@ -50,7 +50,7 @@ class Solution {
 //                                if(j1 == j2) value = grid[i][j1];
 //                                else value = grid[i][j1] + grid[i][j2];
                                
-//                               if(j1+dj1 < 0 || j1+dj1 >= m || j2+ dj2 < 0 || j2+dj2 >= m){
+//                               if((j1+dj1 < 0 || j1+dj1 >= m) || (j2+ dj2 < 0 || j2+dj2 >= m)){
 //                                   value += (int)(Math.pow(-10, 9));
 //                               }else{
 //                                   value += dp[i+1][j1+dj1][j2+dj2];
