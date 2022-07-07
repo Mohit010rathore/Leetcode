@@ -1,18 +1,30 @@
 class Solution {
-    private boolean isInterleaving(String a, String b, String c, Map<String, Boolean> map){
-        if(a.length() + b.length() != c.length()) return false;
-        if(a.isEmpty() && b.isEmpty() && c.isEmpty()) return true;
-        String key = a + "->" + b + "->" + c;
-        boolean resultOne = false;
-        boolean resultTwo = false;
-        if(!map.containsKey(key)){
-            if(!a.isEmpty() && a.charAt(0) == c.charAt(0)) resultOne = isInterleaving(a.substring(1), b, c.substring(1), map);
-            if(!b.isEmpty() && b.charAt(0) == c.charAt(0)) resultTwo = isInterleaving(a, b.substring(1), c.substring(1), map);
-            map.put(key, resultOne || resultTwo);
-        }
-        return map.get(key);
-    }
     public boolean isInterleave(String s1, String s2, String s3) {
-        return isInterleaving(s1, s2, s3, new HashMap<>());
+       int len1 = s1.length();
+        int len2 = s2.length();
+        int len3 = s3.length();
+        
+        if ((len1+len2)!=len3) return false;
+
+        boolean[][] dp = new boolean[len2+1][len1+1];
+
+        dp[0][0] = true;
+
+        for (int i = 1; i < dp[0].length; i++){
+            dp[0][i] = dp[0][i-1]&&(s1.charAt(i-1)==s3.charAt(i-1));
+        }
+
+        for (int i = 1; i < dp.length; i++){
+            dp[i][0] = dp[i-1][0]&&(s2.charAt(i-1)==s3.charAt(i-1));
+        }
+
+        for (int i = 1; i < dp.length; i++){
+            for (int j = 1; j < dp[0].length; j++){
+                dp[i][j] = (dp[i-1][j]&&(s2.charAt(i-1)==s3.charAt(i+j-1)))
+                        || (dp[i][j-1]&&(s1.charAt(j-1)==s3.charAt(i+j-1)));
+            }
+        }
+
+        return dp[len2][len1];
     }
 }
