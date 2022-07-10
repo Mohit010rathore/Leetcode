@@ -1,33 +1,34 @@
 class Solution {
-    public boolean isMatch(String s, String p)
-    {
+    public boolean isMatch(String s, String p) {
         int n = s.length();
         int m = p.length();
         
-       Boolean dp[][] = new Boolean[n+1][m+1];
-         return help(n,m,s,p,dp);
-    }
-    public boolean help(int n,int m,String s,String p,Boolean dp[][])
-    {
-        if(n==0 && m==0) return true;
-        if(n==0) {
-            for(int i=0;i<m;i++) {
-                if(p.charAt(i)!='*') return false;
+        boolean dp[][] = new boolean[n+1][m+1];
+        dp[0][0] = true;
+        for(int i=1;i<=m;i++)
+        {
+            dp[0][i] = dp[0][i-1] && (p.charAt(i-1) == '*');
+        }
+		// not required as boolean arrays are initialised as false in Java
+        for(int i=1;i<=n;i++) dp[i][0] = false;
+        
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=m;j++)
+            {
+                if(p.charAt(j-1) == s.charAt(i-1) || p.charAt(j-1) == '?' ) 
+                    dp[i][j] = dp[i-1][j-1];
+                else if(p.charAt(j-1)=='*')
+                {
+                    boolean a = dp[i-1][j];
+                    boolean b = dp[i-1][j-1];
+                    boolean c = dp[i][j-1];
+                    
+                    dp[i][j] = a||b||c;
+                }else dp[i][j] = false;
             }
-            return true;
         }
-        if(n==0 || m==0) return false;
         
-        if(dp[n][m] != null) return dp[n][m];
-        
-        if(p.charAt(m-1)==s.charAt(n-1))return dp[n][m] = help(n-1,m-1,s,p,dp);
-        
-        else if(p.charAt(m-1)=='?') return dp[n][m] = help(n-1,m-1,s,p,dp);
-        
-        else if(p.charAt(m-1)=='*'){
-            return dp[n][m] = help(n-1,m,s,p,dp) || 
-                help(n-1,m-1,s,p,dp) || help(n,m-1,s,p,dp);
-        }
-        else return dp[n][m] = false;
+         return dp[n][m];
     }
 }
