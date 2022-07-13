@@ -15,9 +15,9 @@ class Solution {
     }
     public int maxCoins(int[] nums) {
         int n = nums.length;
-        int[] nCuts = new int[n + 2];
-        nCuts[0] = 1;
-        nCuts[n + 1] = 1;
+        int[] nCuts = new int[n + 2];         // creating a new array of size n+2
+        nCuts[0] = 1;                         // inserting 1 at the front  
+        nCuts[n + 1] = 1;                     //inserting 1 at the back
         System.arraycopy(nums, 0, nCuts, 1, n);
         
         int dp[][] = new int[n+1][n+1];
