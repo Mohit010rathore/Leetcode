@@ -14,41 +14,28 @@ class Solution {
             else if(matrix[i][j]=='0')
 				ary[j]=0;
 		}
-		max=Math.max(max,check(ary));
+		max=Math.max(max,largestRectangle(ary));
 	}
 	return max;
  }
-  private int check(int[] nums) {
-	Stack<Integer> hs=new Stack<>();
-	int[] left=new int[nums.length];
-	
-    for(int i=0;i<nums.length;i++)
-    {
-    	while(!hs.empty() && nums[hs.peek()]>=nums[i])
-    		hs.pop();
-    	if(hs.empty())left[i]=0;
-    	else left[i]=hs.peek()+1;
-    	hs.push(i);
-    		
+    
+    //for measuring the area of height array ,which we get after per row
+  public int largestRectangle(int[] heights){
+        Stack<Integer> st = new Stack<>();
+        int maxArea = 0;
+        for(int i = 0; i <= heights.length; i++){
+           while(!st.empty() && (i==heights.length || heights[st.peek()] >=                         heights[i])) {
+               int height = heights[st.peek()];
+               st.pop();
+               int width;
+               if(st.empty()) 
+                   width = i;
+               else
+                   width = i - st.peek() - 1;
+               maxArea = Math.max(maxArea,width*height);
+           } 
+            st.push(i);
+        }
+        return maxArea;
     }
-  
-    while(!hs.empty())hs.pop();
-    int[] right=new int[nums.length];
-	
-    for(int i=nums.length-1;i>=0;i--)
-    {
-    	while(!hs.empty() && nums[hs.peek()]>=nums[i])
-    		hs.pop();
-    	if(hs.empty())right[i]=nums.length-1;
-    	else right[i]=hs.peek()-1;
-    	hs.push(i);
-    		
-    } 
-    int max=Integer.MIN_VALUE;
-    for(int i=0;i<nums.length;i++)
-    {
-     max=Math.max(max,(right[i]-left[i]+1)*nums[i]);
-    }
-	return max;
-  }
 }
