@@ -1,10 +1,33 @@
 class Solution {
+    //Tabulation
+     private static int[] count(String str){
+        int ans[] = {0,0};
+        for(int i = 0;i < str.length();i++){
+            if(str.charAt(i) == '0') ans[0]++;
+            else ans[1]++;
+        }
+        return ans;
+    }
     public int findMaxForm(String[] strs, int m, int n) {
-        int a= strs.length;
-        int dp[][][] = new int[m+1][n+1][a];
-        return f(strs, m, n, 0,dp);
+        //int dp[][][] = new int[m+1][n+1][strs.length]
+        int dp[][][] = new int[strs.length + 1][m + 1][n + 1];
+        for(int i = 1;i <= strs.length;i++){
+            int cnt[] = count(strs[i - 1]);
+            for(int j = 0;j <= m;j++){
+                for(int k = 0;k <= n;k++){
+                    if(j - cnt[0] >= 0 && k - cnt[1] >= 0){
+                        dp[i][j][k] = Math.max(dp[i - 1][j][k],1 + dp[i - 1][j - cnt[0]][k - cnt[1]]);
+                    }
+                    else{
+                        dp[i][j][k] = dp[i - 1][j][k];
+                    }
+                }
+            }
+        }
+        return dp[strs.length][m][n];
     }
     
+    //Memoization
     public int f(String[] strs, int m, int n, int i,int dp[][][]){
         if(i==strs.length) return 0;
         
