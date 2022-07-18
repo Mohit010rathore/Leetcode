@@ -1,7 +1,7 @@
 class Solution {
     public String simplifyPath(String path) {
-        Stack st = new Stack<>();
-        String[] pathList = path.split("\\/");  //this is the way of writing since we need to escape the backslash
+        Stack<String> st = new Stack<>();
+        String[] pathList = path.split("\\/");  //this is the way of writing since we need to escape the backslash- we store the modified string in this pathlist
         
         for(String p: pathList){
             if(p.length() == 0 || p.equals(".")){  //do nothing
