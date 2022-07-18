@@ -3,7 +3,7 @@ class Solution {
         List<String> ans= new ArrayList();
         
         //we will write the recursive function
-        findAll("(",1,0,n,ans);
+        findAll("(",1,0,n,ans);  // we will start with open bracket, and maintain count of open bracket as of bow we put 1..as we started with open and closeCount =0 and pass n bcoz we have to know how many open and close bracket we should use and pass the ans
         return ans;
     }
     
