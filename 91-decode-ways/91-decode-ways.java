@@ -20,6 +20,8 @@ class Solution {
         
         return dp[ind] = ans;
     }
+    
+    //Tabulation
     public int numDecodings(String s) {
         // int dp[] = new int [101];
         // return f(0,s,dp);
