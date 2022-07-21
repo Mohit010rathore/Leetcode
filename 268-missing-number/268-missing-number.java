@@ -1,18 +1,29 @@
 class Solution {
-    public int missingNumber(int[] nums) {
+     public int missingNumber(int[] nums){
+         int n = nums.length;
+         int ans = 0;
+         
+         for(int i=0;i<n;i++){
+             ans ^= (nums[i]^i); 
+         }
+         
+         ans ^= n;
+         return ans;
+     }
+//     public int missingNumber(int[] nums) {
         
-        // Using sum of n numbers and actual sum , difference will be the answer
+//         // Using sum of n numbers and actual sum , difference will be the answer
         
-        int rSum = (nums.length)*(nums.length + 1)/2;
-        int aSum = 0;
-        for(int i =0;i<nums.length;i++){
-            aSum += nums[i];
-        }
-        rSum -= aSum;
-        return rSum;
+//         int rSum = (nums.length)*(nums.length + 1)/2;
+//         int aSum = 0;
+//         for(int i =0;i<nums.length;i++){
+//             aSum += nums[i];
+//         }
+//         rSum -= aSum;
+//         return rSum;
         
         
-    }
+//     }
     
    // TLE - //By swapping the numbers for the correct position of elements 
     
