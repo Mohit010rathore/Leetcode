@@ -8,14 +8,17 @@ class Solution {
             return -1;
         }
         
-        for(int i =0;i<= len1-len2 ;i++){   
-        int j;
+        for(int i =0;i<= len1-len2 ;i++){    
+                int j;
+                boolean isBool = true;
                 for(j=0;j<len2;j++){
                     if(haystack.charAt(i+j) != needle.charAt(j)){
+                        isBool = false;
                         break;
                     }
                 }
-                if(j == len2) return i;
+                if(isBool)
+                    if(j == len2) return i;
         }
         return -1;
         
