@@ -20,6 +20,7 @@ class Solution {
         
         ListNode slow = start;
         
+        //handling the edge case when there is only one element
        if(fast.next == null){
            return head.next;
        }
