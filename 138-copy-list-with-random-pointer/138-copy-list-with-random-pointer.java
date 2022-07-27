@@ -15,36 +15,39 @@ class Node {
 
 class Solution {
     public Node copyRandomList(Node head) {
-        Node iter = head, front = head;
+        Node curr = head, temp = head;
         
         // Step 1: Insert copy nodes right after original nodes
-        while(iter != null){
-            front = iter.next; 
-            Node copy = new Node(iter.val);
-            iter.next = copy;
-            copy.next = front;
-            iter = front;
+        while(curr != null){
+            temp = curr.next; 
+            // Node copy = new Node(curr.val);
+            // curr.next = copy;
+            // copy.next = temp;
+            // curr = temp;
+            curr.next = new Node(curr.val);
+            curr.next.next = temp;
+            curr = temp;
         }
         
         // Step 2: Point the random pointers
-        iter = head;
-        while(iter != null){
-            if(iter.random != null)
-                iter.next.random = iter.random.next;
-            iter = iter.next.next;
+        curr = head;
+        while(curr != null){
+            if(curr.random != null)
+                curr.next.random = curr.random.next;
+            curr = curr.next.next;
         }
         
         // Step 3: Get the original and deep copy linked list
-        iter = head;
+        curr = head;
         Node copyHead = new Node(0);
         Node copy = copyHead;
         
-        while(iter != null){
-            front = iter.next.next;
-            copy.next = iter.next;
-            iter.next = front;
+        while(curr != null){
+            temp = curr.next.next;
+            copy.next = curr.next;
+            curr.next = temp;
             copy = copy.next;
-            iter = iter.next;
+            curr = curr.next;
         }
         
         return copyHead.next;
