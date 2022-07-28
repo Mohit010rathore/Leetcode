@@ -9,27 +9,32 @@ class Node {
 */
 
 class Solution {
+    //TC = O(N)
+    //SC = O(1)
     public Node flatten(Node head) {
-        Node it = head;
-        while( it != null ){
-            if(it.child != null){
-                Node next = it.next;
-                
-                it.next = flatten(it.child);
-                it.next.prev = it;
-                it.child = null;
-                
-                while(it.next != null){
-                    it = it.next;
-                }
-                
-                if(next != null){
-                    it.next = next;
-                    it.next.prev= it;
-                }
+        Node current  = head;
+        
+        while(current != null){
+            if(current.child == null){
+                current = current.next;
+                continue;
             }
-            it = it.next;
+            Node temp = current.child;
+            while(temp.next != null){
+                temp = temp.next;
+            }
+            
+            temp.next = current.next;
+            
+            if(current.next != null){
+                current.next.prev = temp;
+            }
+            current.next = current.child;
+            current.child.prev = current;
+            current.child = null;
+            
         }
         return head;
+
     }
 }
