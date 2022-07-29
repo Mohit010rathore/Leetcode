@@ -11,6 +11,7 @@ class Solution {
 //         }
 //         return dp[i][j] = 1 + Math.min(f(i-1,j,s1,s2,dp), Math.min(f(i,j-1,s1,s2,dp), f(i-1,j-1,s1,s2,dp)));
 //     }
+    //Tabulation
     public int minDistance(String word1, String word2) {
         int n = word1.length();
         int m = word2.length();
