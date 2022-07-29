@@ -1,4 +1,6 @@
 class Solution {
+    //MEMOIZATION
+    
 //     public int f(int ind,int prev_ind,int [] arr,int n, int dp[][]){
 //         if(ind == n) return 0;
         
@@ -12,6 +14,10 @@ class Solution {
 //         }
 //         return dp[ind][prev_ind+1]= len;
 //     }
+    
+    
+    //TABULATED
+    
 //     public int lengthOfLIS(int[] nums) {
 //         int n = nums.length;
 //         int dp[][] = new int[n+1][n+1];
@@ -29,6 +35,10 @@ class Solution {
 //         }
 //         return dp[0][-1+1];
 //     }
+    
+    
+    //SPACE OPTIMISED
+    
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
         int cur [] = new int [n+1];
@@ -48,4 +58,6 @@ class Solution {
         }
         return next[-1+1];
     }
+    
+    
 }
