@@ -1,17 +1,23 @@
 class MyCalendar {
-
-    HashMap<Integer,Integer> map;
+    Map<Integer,Integer> nm=new HashMap<>();
     public MyCalendar() {
-        map = new HashMap<>();
+        
     }
     
     public boolean book(int start, int end) {
-        for(Integer val : map.keySet()){
-            if(val < end && map.get(val) > start){
+        if(nm.size()==0)
+        {
+            nm.put(start,end);
+            return true;
+        }
+        for(int i:nm.keySet())
+        {
+            if(Math.max(start,i)<Math.min(end,nm.get(i)))
+            {
                 return false;
             }
         }
-        map.put(start,end);
+        nm.put(start,end);
         return true;
     }
 }
