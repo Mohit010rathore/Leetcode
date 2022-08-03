@@ -1,23 +1,24 @@
-class MyCalendar {
+/* Approach: 
+~ There are plenty of ways in which bookings can overlap, but there are essentially only two ways in which they'd not :
+    either startTwo >= endOne or startOne >= endTwo (end being exclusive).
+    now if any of these is met it's true otherwise false.
+*/
 
-    HashMap<Integer,Integer> map;
+class MyCalendar {
+    List<int[]> bookings;
+    
     public MyCalendar() {
-        map = new HashMap<>();
+        bookings = new ArrayList<>();
     }
     
     public boolean book(int start, int end) {
-        for(Integer val : map.keySet()){
-            if(val < end && map.get(val) > start){
+        
+        for(int[] a : bookings){
+            if(!(a[0] >= end || start >= a[1]))
                 return false;
-            }
         }
-        map.put(start,end);
+        
+        bookings.add(new int[]{start, end});
         return true;
     }
 }
-
-/**
- * Your MyCalendar object will be instantiated and called as such:
- * MyCalendar obj = new MyCalendar();
- * boolean param_1 = obj.book(start,end);
- */
