@@ -1,11 +1,8 @@
 class Solution {
      public void findCombinations(int ind,int[] arr, int target,List<List<Integer>> ans,List<Integer> ds){
-        
-        if(target == 0){
-           ans.add(new ArrayList<>(ds)); 
-            return ;
-        }
-        
+            if(target == 0){
+                ans.add(new ArrayList<>(ds)); 
+            }
          
          for(int i = ind;i < arr.length;i++){
              if( i > ind && arr[i] == arr[i-1]) continue;
