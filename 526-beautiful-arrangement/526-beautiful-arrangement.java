@@ -1,3 +1,6 @@
+//TC -> O(M) M is the number of such beautiful arrangements
+//SC -> O(N)
+
 class Solution {
     int count = 0;
     
@@ -15,6 +18,8 @@ class Solution {
         }
         for(int i =k;i< nums.length;i++){
             swap(nums,i,k);
+            
+            //checking the given question condition if any of from the both is true we will recursively call for another 
             if(nums[k] % (k+1) == 0 || (k+1) % nums[k] == 0){
                  permute(nums,k+1);   
             }
