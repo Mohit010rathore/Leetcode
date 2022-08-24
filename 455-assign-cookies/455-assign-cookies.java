@@ -9,7 +9,6 @@ class Solution {
                 i++;
                 j++;
             }else{
-                
                 //we want bigger cookie
                 j++;
             }
