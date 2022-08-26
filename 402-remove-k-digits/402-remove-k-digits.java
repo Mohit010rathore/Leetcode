@@ -1,39 +1,43 @@
 class Solution {
     public String removeKdigits(String num, int k) {
-        Stack<Character> st = new Stack<>();
-        int i = 0;
-        for(;i<num.length() && k>0;){
-            while(k>0 && !st.isEmpty() && num.charAt(i) < st.peek()){
-                st.pop();
-                
+        
+        Stack<Character> stk = new Stack<>();
+        
+        for(int i=0; i<num.length(); i++){
+            while(stk.size()>0 && k>0 && stk.peek()>num.charAt(i)){
+                stk.pop();
                 k--;
             }
-            st.push(num.charAt(i));
-            i++;
+            
+            stk.push(num.charAt(i));
         }
         
-        while(!st.isEmpty() && k> 0){
-            st.pop();
+
+        while(k>0){
+            stk.pop();
             k--;
         }
         
-        String ans = "";
-        while(!st.isEmpty()){
-            ans = st.pop() + ans;
+
+        System.out.println(stk);
+        
+        char[] arr = new char[stk.size()];
+        int l=arr.length-1;
+        while(l>=0){
+            arr[l--]=stk.pop();
         }
         
-        ans  = ans + num.substring(i,num.length());
+        int d=0;
+        while(d<arr.length && arr[d]=='0')d++;
         
-        //removing leading zeroes
-        i=0;
-        while(i < ans.length()){
-            if(ans.charAt(i) == '0'){
-                i++;
-            }else{
-                break;
-            }
+        StringBuilder sb = new StringBuilder();
+        while(d<arr.length){
+            sb.append(arr[d++]);
+        }
+        if(sb.length()==0){
+           sb.append('0');
         }
         
-        return ans.substring(i).length() ==0 ? "0":ans.substring(i);
+        return sb.toString();
     }
 }
