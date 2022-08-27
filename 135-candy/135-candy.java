@@ -6,9 +6,12 @@ class Solution {
         Arrays.fill(distribution,1);
         
         for(int i=0;i<ratings.length-1;i++){
+            
             if(ratings[i+1] > ratings[i]){
+                
                 distribution[i+1] = distribution[i] + 1;
             }
+            
         }
         for(int i=ratings.length-1;i>0 ;i--){
             if(ratings[i-1] > ratings[i]){
@@ -20,8 +23,10 @@ class Solution {
             }
         }
         for(int i=0;i<ratings.length;i++){
+            
             totalCandies += distribution[i]; 
         }
+        
         return totalCandies;
         
     }
