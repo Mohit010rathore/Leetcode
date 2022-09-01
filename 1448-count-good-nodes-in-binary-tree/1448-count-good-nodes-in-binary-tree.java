@@ -23,10 +23,14 @@ class Solution {
     public void countgoodNodes(TreeNode root,int currMax){
         if(root == null) return ;
         
+        //if the present node value is greater than currmax than count++ and curr max will be updated
         if(root.val >= currMax ){
             count++;
             currMax = root.val;
         }
+        
+        //if we got the nodes which are lesser than currMax value
+        //then we simply do the recursion
         if(root.left != null){
             countgoodNodes(root.left,currMax);
         }
