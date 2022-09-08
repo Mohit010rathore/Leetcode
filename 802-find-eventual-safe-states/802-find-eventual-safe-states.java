@@ -10,6 +10,9 @@ class Solution {
             //when the node is not visited
             if(vis[it] == 0){
                 if(dfs(it,vis,pathVis,adj,check) == true){
+                    //if cycle that means-> for this node on this it , i got a cycle
+                    //so this not cannot be a part of it
+                    check[node] = 0;
                     return true;
                 }
             }
@@ -17,6 +20,7 @@ class Solution {
             //but it has to be visited on the same path
             else if(pathVis[it] == 1){
                 //loop
+                check[node] = 0;
                 return true;
             }
         }
