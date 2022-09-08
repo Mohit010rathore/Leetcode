@@ -5,17 +5,22 @@ class Solution {
         pathVis[node] = 1;
         check[node] = 0;
         
+        //traverse for adjacent nodes
         for(int it : adj.get(node)){
+            //when the node is not visited
             if(vis[it] == 0){
-                if(dfs(it,vis,pathVis,adj,check)){
+                if(dfs(it,vis,pathVis,adj,check) == true){
                     return true;
                 }
             }
+            //if the node has been previously visited
+            //but it has to be visited on the same path
             else if(pathVis[it] == 1){
+                //loop
                 return true;
             }
         }
-        
+        //if dfs is successfully completed for a node it means it is a safe node
         check[node] = 1;
         pathVis [node] = 0;
         return false;
