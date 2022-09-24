@@ -5,11 +5,15 @@ class Solution {
             map.put(el, map.getOrDefault(el,0)+1);
         }
         
-        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a,b) -> (b[1] - a[1]));
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a,b) -> (a[1] - b[1]));
         
         //adding all the elements in priorityQueue from the map
         for(Map.Entry<Integer,Integer> entry : map.entrySet()){
             pq.offer(new int[]{entry.getKey(),entry.getValue()});
+            
+            if(pq.size() > k){
+                pq.poll();
+            }
         }
         
         int [] ans = new int[k];
